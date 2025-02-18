@@ -143,3 +143,15 @@ print(dic)  #{'uno', 'three', 'one', 'two', 'tres', 'dos'}
 dic_2 = {"uno": "one", "two": "dos", "three": "tres", "love":"amor", "health":"salud"}
 del dic_2["love"]
 print(dic_2)
+
+
+"uno" in "one"
+True
+
+"uno" in "two"
+False
+
+dic_2 = {"uno": "one", "two": "dos", "three": "tres", "health":"salud"}
+keys_to_check = ["one","two","three","health"]
+existing_keys=[key for key in keys_to_check if key in dic_2]
+print(existing_keys)
