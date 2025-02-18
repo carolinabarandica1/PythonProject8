@@ -134,3 +134,12 @@ print(len(a_2))
 #the index is called a “key”. Like indices, the “keys” need to be unique and each key
 #maps to a value. Dictionaries are mutable
 
+#A dictionary is created with {}
+
+dic = {"uno", "one","two", "dos","three", "tres"}
+print(len(dic)) #6
+print(dic)  #{'uno', 'three', 'one', 'two', 'tres', 'dos'}
+
+dic_2 = {"uno": "one", "two": "dos", "three": "tres", "love":"amor", "health":"salud"}
+del dic_2["love"]
+print(dic_2)
