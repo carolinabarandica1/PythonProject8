@@ -168,6 +168,7 @@ def common_words(file_name_2):
     link = "https://gutenberg.org/cache/epub/02/pg02.txt"
     response = requests.get(link)
 
+
     # Save the file locally
     with open(file_name_2, 'wb') as file:
         file.write(response.content)
