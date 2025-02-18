@@ -1,4 +1,5 @@
 #for finding out results just use the print(type(...)) function
+from string import punctuation
 from urllib import response
 
 print(type(2+3))
@@ -155,3 +156,51 @@ dic_2 = {"uno": "one", "two": "dos", "three": "tres", "health":"salud"}
 keys_to_check = ["one","two","three","health"]
 existing_keys=[key for key in keys_to_check if key in dic_2]
 print(existing_keys)
+
+
+
+#putting it all together
+import requests
+import string
+
+def common_words(file_name_2):
+    # Step 1: Download the file
+    link = "https://gutenberg.org/cache/epub/02/pg02.txt"
+    response = requests.get(link)
+
+    # Save the file locally
+    with open(file_name_2, 'wb') as file:
+        file.write(response.content)
+
+    # Step 2: Read and process the file
+    with open(file_name_2, 'r', encoding='utf-8') as final_dictionary:
+        d = {}  # Dictionary to store word frequencies
+
+        for line in final_dictionary:
+            line = line.lower().translate(str.maketrans('', '', string.punctuation))  # Remove punctuation and convert to lowercase
+            words = line.split()
+
+            for word in words:
+                if word in d:
+                    d[word] += 1
+                else:
+                    d[word] = 1
+
+    # Step 3: Find the 10 most common words
+    values = sorted(d.values(), reverse=True)  # Sort word counts in descending order
+    common = []
+
+    for numbers in values[:10]:  # Get top 10 word frequencies
+        for key in d:
+            if d[key] == numbers and (key, numbers) not in common:
+                common.append((key, numbers))
+
+    # Step 4: Print results
+    print("The most common words are:")
+    for word, count in common:
+        print(word, count, "times")
+
+# Call the function
+common_words("CommonWords.txt")
+
+
