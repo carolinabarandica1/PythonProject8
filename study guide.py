@@ -76,6 +76,38 @@ def find_b_words(filename):
 filename = "The_House_of_the_Seven_Gables.txt"
 find_b_words(filename)
 
+#also can be
+
+def find_b_words(url, filename):
+    """Download a file from a URL, save it, and find 3-letter words starting with 'b'."""
+
+    # Download content from the URL
+    response = requests.get(url)
+
+    # Save the file
+    with open(filename, 'wb') as file:
+        file.write(response.content)
+
+    try:
+        # Open and read the file
+        with open(filename, 'r', encoding="utf-8") as file:
+            words = file.read().split()  # Split text into words
+
+            # Find 3-letter words starting with 'b'
+            b_words = [word for word in words if len(word) == 3 and word.lower().startswith('b')]
+
+            print("3-letter words starting with 'b':", b_words)
+
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+
+
+# Define the URL and filename
+url = "https://gutenberg.org/cache/epub/77/pg77.txt"
+filename = "The_House_of_the_Seven_Gables.txt"
+
+# Run the function
+find_b_words(url, filename)
 
 #Write a function that takes an integer as parameter and returns a list of all the
 #divisors of that number:
